@@ -1,0 +1,74 @@
+
+//Color
+$color-main-1:#b61984;
+$color-main-2:#dcd1f3;
+$color-dark:#000;
+$color-light:#fff;
+$color-grey: #181818;
+
+//Font-size
+$text-size-1: 11.25px;
+$text-size-2:13px;
+$text-size-3:13.5px;
+$text-size-4:15px;
+$text-size-5:23.25px;
+
+//Font-weight
+
+$font-1:300;
+$font-2:400;
+$font-3:600;
+$font-4:700;
+
+//Background
+$bg-light:#fff;
+$bg-main:#b61984;
+
+//Screen size
+$screen:(
+    min:360px,
+    mb:576px,
+    mr:768px,
+    tb:992px,
+    dt:1200px,
+);
+
+
+//Mixin
+@mixin button($tc,$bg,$pd,$bg-hover,$text-hover,$br) {
+    color: $tc;
+    background-color: $bg;
+    padding: $pd;
+    border-radius: $br;
+    &:hover{
+        background-color: $bg-hover;
+        color: $text-hover;
+    }
+    
+}
+
+@mixin text($fs,$fw,$c){
+    font-size: $fs;
+    font-weight: $fw;
+    color: $c;
+}
+
+@mixin position($po,$top,$left){
+    position: $po;
+    top:$top;
+    left:$left;
+}
+
+@mixin responsive($width){
+    @if (map-has-key($map:$screen , $key:$width )){
+        $value: map-get($map: $screen, $key:$width );
+        @media screen and (max-width:$value) {
+            @content;
+    
+        }  
+    }
+    @else{
+        @warn "`{$width}` isn't in Screen";
+    }
+    
+}

@@ -1,0 +1,615 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+@import "./base/variable";
+.container {
+  max-width: 1280px;
+  padding: 0 15px;
+  margin: 0 auto;
+  @include responsive(tb) {
+    padding: 0 30px;
+  }
+}
+.i-icon {
+  font-size: 15px;
+  color: $color-main-1;
+}
+.input-size {
+  padding: 15px 0 15px 50px;
+  border-radius: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  &:focus {
+    border: 1px solid rgba(105, 101, 101, 0.5);
+    outline: none;
+  }
+}
+.p-text {
+  font-family: "Roboto", sans-serif;
+  font-size: $text-size-3;
+  color: $color-light;
+}
+
+//header
+.header {
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+  @include responsive(tb){
+    background-color: $bg-light;
+  }
+  // background-color: $bg-light;
+  .container {
+    position: relative;
+
+    .bars {
+      display: none;
+      position: absolute;
+      top: 30px;
+      left: -10px;
+      @include responsive(tb) {
+        display: block;
+        top: 15px;
+        left: 50px;
+        font-size: 30px;
+      }
+      i {
+      }
+    }
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .logo {
+        img {
+          width: 90%;
+          @include responsive(tb) {
+            width: 40%;
+            margin-left: 50px;
+          }
+        }
+      }
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        @include responsive(tb){
+          display: none;
+        }
+        a {
+          text-decoration: none;
+          padding: 10px 50px 0 0;
+          transition: all 0.3s;
+          position: relative;
+          cursor: pointer;
+          @include text($text-size-2, $font-3, $color-dark);
+          &:hover {
+            color: $color-main-1;
+
+            &::after {
+              width: 12px;
+              height: 12px;
+              transform: scale(1, 1);
+              opacity: 1;
+            }
+          }
+          &::after {
+            content: "";
+            position: absolute;
+            left: 15%;
+            bottom: -30px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: $color-main-1;
+            transition: all 0.3s;
+            opacity: 0;
+          }
+        }
+        .active {
+          &::after {
+            opacity: 1;
+          }
+        }
+        .contact {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .btn1 {
+            @include button(
+              $color-light,
+              $bg-main,
+              13px 20px,
+              $bg-light,
+              $color-main-1,
+              30px
+            );
+            border: 1px solid $color-main-1;
+            transition: all 0.3s;
+            box-shadow: 0 0 0 3em $color-main-1 inset;
+            &:hover {
+              box-shadow: 0 0 0 0.5px $color-main-1 inset;
+            }
+          }
+          .social {
+            i {
+              margin-left: 12px;
+              transition: all 0.3s;
+              cursor: pointer;
+              &:hover {
+                color: $color-main-1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//carousel
+.intro {
+  position: relative;
+  .container {
+    display: flex;
+    align-items: center;
+    padding-top: 60px;
+    @include responsive(tb){
+      display: block;
+    }
+    .content {
+      animation: move 1s;
+      width: 50%;
+      @include responsive(tb){
+        position: relative;
+        z-index: 4;
+        width: 100%;
+        padding-top: 50px
+      }
+      h3 {
+        @include text(16.5px, 600, $color-main-1);
+      }
+      h1 {
+        @include text(57px, 700, $color-dark);
+        margin-top: 10px;
+        @include responsive(tb){
+          font-size: 47.25px;
+        }
+        @include responsive(min){
+          font-size: 37.5px;
+        }
+      }
+    }
+    .img {
+      animation: hide 2s;
+      width: 50%;
+      @include responsive(tb){
+        width: 100%;  
+      }
+      img {
+        width: 100%;
+     
+      }
+    }
+  }
+  .background-top {
+    position: absolute;
+    top: 0;
+
+    img {
+      width: 100%;
+    }
+  }
+  .background-bot {
+    position: absolute;
+    bottom: -70px;
+    img {
+      width: 100%;
+    }
+  }
+}
+
+//team
+.team {
+  position: relative;
+  z-index: 4;
+  margin-top: 50px;
+  padding-top: 30px;
+  background-color: $color-main-2;
+  .container {
+    position: relative;
+    z-index: 4;
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      .col {
+        width: calc(100% / 4);
+        text-align: center;
+        padding: 20px 20px;
+
+        @for $i from 0 to 5 {
+          .item-#{$i} {
+            animation: hide 1s (0.2s * $i + 0.1s);
+          }
+        }
+        @include responsive (tb){
+          width: calc(100% / 2);
+        }
+        @include responsive (mb){
+          width: 100%;
+        }
+        .item {
+          transition: all 0.5s;
+          &:hover {
+            box-shadow: 0px 20px 24px -9px rgba(0, 0, 0, 0.59);
+          }
+          .teacher-pic {
+            overflow: hidden;
+            img {
+              width: 100%;
+              display: block;
+              border-radius: 10px 10px 0 0;
+              overflow: hidden;
+              transition: all 0.5s;
+            }
+            &:hover {
+              img {
+                transform: scale3d(1.05, 1.05, 1.05);
+              }
+            }
+          }
+          .teacher-infor {
+            padding: 35px 35px;
+            background-color: $bg-light;
+            border-radius: 0 0 10px 10px;
+            h3 {
+              @include text($text-size-1, 600, $color-main-1);
+            }
+            h2 {
+              @include text($text-size-5, 700, $color-dark);
+              margin: 5px 0 10px 0;
+            }
+            p {
+              @include text($text-size-4, 400, $color-grey);
+              font-family: "Roboto", sans-serif;
+              line-height: 25px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .background-team {
+    position: absolute;
+    bottom: 0;
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+}
+
+//Find us
+
+.findus {
+  padding-top: 100px;
+  position: relative;
+  .container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 4;
+    @include responsive (tb){
+      display: block;
+    }
+    .findus-left {
+      img {
+        width: 90%;
+        @include responsive (tb){
+          width: 60%;
+        }
+      }
+    }
+    .findus-right {
+      .form-all {
+        form {
+          border-radius: 10px;
+          box-shadow: 0px 20px 24px -9px rgba(0, 0, 0, 0.59);
+          padding: 40px 25px;
+          margin: 0 50px;
+          background-color: $bg-light;
+          @include responsive (tb){
+            margin: 0;
+          }
+          h1 {
+            @include text(37.5px, $font-4, $color-dark);
+            margin-bottom: 50px;
+            text-align: center;
+            @include responsive (tb){
+              font-size:30px ;
+              text-align: left;
+            }
+          }
+          .input-flex {
+            display: flex;
+            justify-content: space-between;
+            @include responsive (mr){
+              display: block;
+            }
+            .name {
+              position: relative;
+             
+              .symbol {
+                .name-icon {
+                  @extend .i-icon;
+                  @include position(absolute, 15px, 20px);
+                }
+              }
+
+              .your-name {
+                @extend .input-size;
+                margin-right: 20px;
+                @include responsive (mr){
+                  width: 100%;
+                }
+              }
+            }
+            .mail {
+              position: relative;
+             
+              .symbol {
+                .mail-icon {
+                  @extend .i-icon;
+                  @include position(absolute, 15px, 20px);
+                }
+              }
+
+              input {
+                @extend .input-size;
+                @include responsive (mr){
+                  width: 100%;
+                }
+              }
+            }
+          }
+
+          .course {
+            .symbol {
+              position: relative;
+              .book-icon {
+                @extend .i-icon;
+                @include position(absolute, 16px, 20px);
+              }
+            }
+
+            .list {
+              @extend .input-size;
+              padding-left: 40px;
+              width: 100%;
+              option {
+              }
+            }
+          }
+          .message {
+            .symbol {
+              position: relative;
+              .comment-icon {
+                @extend .i-icon;
+                @include position(absolute, 17px, 20px);
+              }
+            }
+
+            textarea {
+              @extend .input-size;
+              width: 100%;
+            }
+          }
+          .btn-send {
+            .send {
+              transition: all 0.3s;
+              @include button(
+                $color-light,
+                $color-main-1,
+                16px 60px,
+                $color-light,
+                $color-main-1,
+                30px
+              );
+              font-weight: 600;
+              border: none;
+              margin-bottom: 20px;
+              border: 1px solid $color-main-1;
+              box-shadow: 0 0 0 3em $color-main-1 inset;
+              @include responsive (mr){
+                width: 100%;
+              }
+              &:hover {
+                box-shadow: 0 0 0 0.5px $color-main-1 inset;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .bg-findus {
+    img {
+      position: absolute;
+      bottom: -10px;
+      width: 100%;
+    }
+  }
+}
+
+//Footer
+
+.footer {
+  background-image: url(../img/footer_background.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: $color-light;
+  padding: 100px 0;
+  margin-top: 10px;
+  position: relative;
+  .container {
+    .foot-row {
+      position: relative;
+      z-index: 4;
+      .foot-col {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        .foot-item {
+          width: calc(100% / 4);
+          padding: 0 20px;
+          @include responsive (tb){
+            width: calc(100% / 2) ;
+            margin-bottom: 30px;
+          }
+
+          .foot-title {
+            h1 {
+              @include text($text-size-5, $font-4, $color-light);
+              margin-bottom: 20px;
+            }
+            .address {
+              display: flex;
+              margin-bottom: 15px;
+              .add-icon {
+                i {
+                  font-size: 15px;
+                }
+              }
+              .add-text {
+                p {
+                  @extend .p-text;
+                  margin-left: 15px;
+                }
+              }
+            }
+          }
+          .foot-social {
+            i {
+              font-size: 15px;
+              margin-right: 10px;
+              transition: all 0.3s;
+              cursor: pointer;
+              &:hover {
+                color: $color-dark;
+              }
+            }
+          }
+        }
+        .foot-item1 {
+          width: calc(100% / 4);
+          padding-left: 10px;
+          @include responsive (tb){
+            width: calc(100% / 2) ;
+            margin-bottom: 50px;
+          }
+          .foot-title1 {
+            h1 {
+              @include text($text-size-5, $font-4, $color-light);
+              margin-bottom: 5px;
+            }
+            .links {
+              a {
+                text-decoration: none;
+                display: block;
+                @extend .p-text;
+                padding: 15px 0;
+                width: 20%;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                &:hover {
+                  opacity: 0.8;
+                }
+              }
+            }
+          }
+        }
+        .foot-item2 {
+          width: calc(100% / 4);
+          @include responsive (tb){
+            width: calc(100% / 2) ;
+            margin-bottom: 30px;
+          }
+          .foot-title2 {
+            h1 {
+              @include text($text-size-5, $font-4, $color-light);
+              margin-bottom: 50px;
+            }
+            .sub {
+              .input-email {
+                input {
+                  width: 100%;
+                  text-align: center;
+                  padding: 15px 0;
+                  font-family: "Roboto", sans-serif;
+                  background: transparent;
+                  border: 1px solid rgba(255, 255, 255, 0.1);
+                  border-radius: 30px;
+                  transition: all 0.5s;
+                  margin-bottom: 10px;
+                  &::placeholder {
+                    color: $color-light;
+                  }
+                  &:focus {
+                    border: 1px solid $color-light;
+                    outline: none;
+                  }
+                }
+              }
+              .btn-sub {
+                width: 100%;
+                transition: all 0.3s;
+                cursor: pointer;
+                @include button(
+                  $color-dark,
+                  $bg-light,
+                  15px 0,
+                  transparent,
+                  $color-light,
+                  30px
+                );
+                border: 1px solid $color-light;
+                font-weight: $font-3;
+                letter-spacing: 2px;
+                box-shadow: 0 0 0 3em $bg-light inset;
+                &:hover {
+                  box-shadow: 0 0 0 0.5px $bg-light inset;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Keyframes
+@keyframes move {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes hide {
+  0% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 1;
+  }
+}
